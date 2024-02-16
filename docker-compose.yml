@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  api-payment-server:
+    container_name: api-payment-server
+    env_file: ./.env
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: api-payment-server:latest
+    ports:
+      - 8404:8443
+    networks:
+      network:
+        ipv4_address: 11.5.0.2
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 11.5.0.0/16
+          gateway: 11.5.0.1
