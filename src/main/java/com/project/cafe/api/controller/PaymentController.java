@@ -34,20 +34,6 @@ public class PaymentController {
     }
   }
 
-  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<StandardResponseDTO> findById(
-    @PathVariable("id") String id
-  ) throws ModelException {
-    try {
-      return new ResponseEntity<>(
-        new StandardResponseDTO(paymentService.findById(id)),
-        HttpStatus.OK
-      );
-    } catch (Exception e) {
-      throw new ModelException(e.getMessage());
-    }
-  }
-
   @GetMapping(
     value = "/{userEmail}",
     produces = MediaType.APPLICATION_JSON_VALUE
