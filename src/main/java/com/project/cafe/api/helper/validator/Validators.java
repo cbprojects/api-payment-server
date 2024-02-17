@@ -36,7 +36,7 @@ public class Validators {
     if (dto == null) {
       error = ConstantsMessages.BAD_REQUEST;
     } else {
-      if (dto.getValue().compareTo(BigDecimal.ZERO) >= 0) {
+      if (dto.getValue().compareTo(BigDecimal.ZERO) < 0) {
         error = ConstantsFields.VALOR + ConstantsMessages.BAD_VALUE;
       }
     }
@@ -49,7 +49,7 @@ public class Validators {
     if (dto == null) {
       error = ConstantsMessages.BAD_REQUEST;
     } else {
-      if (dto.getValue().compareTo(BigDecimal.ZERO) >= 0) {
+      if (dto.getValue().compareTo(BigDecimal.ZERO) < 0) {
         error = ConstantsFields.VALOR + ConstantsMessages.BAD_VALUE;
       }
     }

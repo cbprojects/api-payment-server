@@ -8,6 +8,7 @@ import com.project.cafe.api.model.enums.EPaymentStatus;
 import com.project.cafe.api.model.mapper.PaymentMapper;
 import com.project.cafe.api.repository.PaymentRepository;
 import com.project.cafe.api.service.IPaymentService;
+import com.stripe.model.Charge;
 import io.micrometer.core.instrument.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class PaymentService implements IPaymentService {
   private final PaymentMapper mapper;
   private final PaymentRepository repository;
   private final HistoricalService historicalService;
+  private final StripeService stripeService;
 
   @Override
   public List<PaymentDTO> find() throws ModelException {
@@ -143,11 +145,11 @@ public class PaymentService implements IPaymentService {
       this.setAuditValues(entity);
 
       // Call to API STRIPE
-      String stripeMsg = "TODO: WebClient to Stripe";
+      Charge charge = stripeService.charge(dto);
+      String stripeMsg = charge.toJson();
 
-      // TODO: Status depende de respuesta de Stripe
       // Save entity
-      entity.setStatus(EPaymentStatus.PENDIENTE.ordinal());
+      entity.setStatus(EPaymentStatus.PAGADO.ordinal());
       entity = this.repository.save(entity);
 
       // Save Historical

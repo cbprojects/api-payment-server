@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -19,11 +18,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@CompoundIndex(
-  name = "code_name_company",
-  def = "{'code' : 1, 'name': 1, 'company': 1}",
-  unique = true
-)
 @Document(collection = ConstantsTableNames.PAYMENTS)
 public class PaymentEntity extends BaseEntity {
 

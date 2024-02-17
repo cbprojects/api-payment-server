@@ -33,6 +33,11 @@ rest:
     header:
       key: API_PAYMENT_SERVER
       version: 1.0.0
+  
+api:
+  stripe:
+    public-key: ${API_STRIPE_PUBLIC_KEY}
+    private-key: ${API_STRIPE_PRIVATE_KEY} 
 
 server:
   port: 8443

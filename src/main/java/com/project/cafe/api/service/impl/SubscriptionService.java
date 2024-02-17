@@ -4,6 +4,7 @@ import com.project.cafe.api.exception.impl.ModelException;
 import com.project.cafe.api.helper.validator.Validators;
 import com.project.cafe.api.model.dto.SubscriptionDTO;
 import com.project.cafe.api.model.entity.SubscriptionEntity;
+import com.project.cafe.api.model.enums.ESubscriptionStatus;
 import com.project.cafe.api.model.mapper.SubscriptionMapper;
 import com.project.cafe.api.repository.SubscriptionRepository;
 import com.project.cafe.api.service.ISubscriptionService;
@@ -118,6 +119,7 @@ public class SubscriptionService implements ISubscriptionService {
       this.setAuditValues(entity);
 
       // Save entity
+      entity.setStatus(ESubscriptionStatus.ACTIVA.ordinal());
       entity = this.repository.save(entity);
 
       return mapper.toDTO(entity);
